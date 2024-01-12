@@ -1,0 +1,19 @@
+.main_wrapper {
+  display: flex; 
+  margin-top: 16px;
+  gap: 16px;
+  
+  .myTrips,
+  .newTrip{
+    background-color: #fff;
+    border-radius: 16px; 
+    min-height: 500px;
+    padding: 24px 30px;
+  }
+  .myTrips{
+    flex: 1.5;
+  }
+  .newTrip{
+    flex: 1;
+  }
+}

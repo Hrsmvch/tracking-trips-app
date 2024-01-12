@@ -1,0 +1,58 @@
+.unAuthBlock {
+  background: #fff;
+  border-radius: 16px;
+  margin-top: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+
+  .message {
+    position: relative;
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-wrap: balance;
+    
+    span {
+      color: #1000c2;
+      font-weight: 600;
+    }
+
+    svg {
+      position: absolute;
+      right: -162px;
+      top: 14px;
+    }
+  }
+
+  button {
+    padding: 16px 34px;
+    background-color: #fff;
+    border-radius: 16px;
+    border: 2px solid #1000c2;
+    color: #1000c2;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: 500ms linear background-color, 500ms linear color;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #1000c2;
+      color: #fff;
+      transition: 500ms linear background-color, 500ms linear color;
+    }
+  }
+}
+
+@media (width < 840px) {
+  .unAuthBlock {
+    .message {
+      svg {
+        display: none;
+      }
+    }
+  }
+}
