@@ -14,7 +14,7 @@ html, body{
 body{ 
   font-family: 'Poppins', sans-serif;
   padding: 20px 16px;
-  background-image: url("/bg.png");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/tracking-trips-app.appspot.com/o/bg.png?alt=media&token=c92841da-029b-4b47-95b7-a2d1fbfabf34");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
