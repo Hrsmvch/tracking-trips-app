@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {  
   output: process.env.NODE_ENV === "development" ? undefined : "export",
-  basePath: process.env.NODE_ENV === "development" ? undefined : 'https://hrsmvch.github.io/',
-  assetPrefix: process.env.NODE_ENV === "development" ? undefined : 'https://hrsmvch.github.io/',
+  basePath: process.env.NODE_ENV === "development" ? undefined : '/tracking-trips-app',
+  assetPrefix: process.env.NODE_ENV === "development" ? undefined : '/tracking-trips-app',
   
   webpack(config) {
     config.module.rules.push({
