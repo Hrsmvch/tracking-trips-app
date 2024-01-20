@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "country-state-city": "^3.2.1",
     "firebase": "^10.7.1",
+    "formik": "^2.4.5",
     "next": "14.0.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-select": "^5.8.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

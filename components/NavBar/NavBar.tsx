@@ -9,10 +9,10 @@ export default function NavBar() {
   const pathname = usePathname();
 
   const { user, loading, googleSignIn, logOut } = UserAuth(); 
-
+ 
   const handleSignIn = async () => {
     try {
-      await googleSignIn();
+      await googleSignIn(); 
     } catch (error) {
       console.log("error: ", error);
     }
@@ -62,3 +62,7 @@ export default function NavBar() {
     </nav>
   );
 }
+function addTripForCurrentUser() {
+  throw new Error("Function not implemented.");
+}
+
