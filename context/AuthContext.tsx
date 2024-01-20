@@ -7,7 +7,6 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { auth } from "@/utils/firebase";
-import { resolve } from "path";
 
 const AuthContext = createContext<any>(null);
 
