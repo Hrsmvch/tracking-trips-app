@@ -5,7 +5,6 @@ import { userTrips } from "@/context/TripsContext";
 
 export default function TripsList() {
   const { data: tripsData } = userTrips();
-  console.log('tripsData: ', tripsData);
 
   if (!tripsData?.length)
     return (

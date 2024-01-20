@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import styles from "./styles.module.scss";
 import { statuses } from "@/data/statuses";
 import { userTrips } from "@/context/TripsContext";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
+import getFormatedDate from "@/utils/getFormatedDate";
+import calculateDuration from "@/utils/calculateDuration";
+import styles from "./styles.module.scss";
 
 export default function TripItem({ data }: any) {  
   const { id, company, destination, origin, note, paid, payment, status, miles } = data; 
@@ -11,32 +13,19 @@ export default function TripItem({ data }: any) {
 
   const [collapsed, setCollapsed] = useState(false); 
   useEffect(() => setCollapsed(false), [id])
-
-  function calculateDuration(startDate: string, endDate: string) {
-    const start: any = new Date(startDate);
-    const end: any = new Date(endDate);
-
-    const timeDifference = Math.abs(end - start);
-
-    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-
-    return `${daysDifference || 0} days`;
-  }
-
-  function changeDateFormat(inputDate: string) {
-    const date: Date = new Date(inputDate);
-
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-
-    const formattedDay = day < 10 ? `0${day}` : day;
-    const formattedMonth = month < 10 ? `0${month}` : month;
-
-    const formattedDate = `${formattedDay}.${formattedMonth}.${year}`;
-
-    return `${inputDate ? formattedDate : "00.00.00"}`;
-  }
+ 
+  const updateTripById = async (tripId: string) => {
+    const {id, ...restData} = data;
+    const testUpdatingData = {...restData, company: `${company} Updated` }
+    try {
+      const tripDocRef = doc(db, 'trips', tripId); 
+      await setDoc(tripDocRef, testUpdatingData, { merge: true });
+  
+      getTripsData();
+    } catch (error) {
+      console.error('Error updating trip:', error);
+    }
+  };
 
   const removeTripById = async (tripId: string) => {
     try {
@@ -50,7 +39,6 @@ export default function TripItem({ data }: any) {
     }
   };
   
-
   return (
     <div className={styles.tripItem} key={id}>
       <div className={styles.preview}>
@@ -109,7 +97,7 @@ export default function TripItem({ data }: any) {
               <div>
                 <div className={styles.label}>Date:</div>
                 <div className={styles.value}>
-                  {changeDateFormat(origin.date)}
+                  {getFormatedDate(origin.date)}
                 </div>
               </div>
             </div>
@@ -124,7 +112,7 @@ export default function TripItem({ data }: any) {
               <div>
                 <div className={styles.label}>Date:</div>
                 <div className={styles.value}>
-                  {changeDateFormat(destination.date)}
+                  {getFormatedDate(destination.date)}
                 </div>
               </div>
             </div>
@@ -180,7 +168,7 @@ export default function TripItem({ data }: any) {
           </div>
 
           <div className={styles.tripActions}>
-            <button className={styles.edit}>
+            <button className={styles.edit} onClick={() => updateTripById(id)}>
               <svg
                 width="24"
                 height="24"
