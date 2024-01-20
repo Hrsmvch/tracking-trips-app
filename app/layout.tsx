@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/NavBar/NavBar";
 import { AuthContextProvider } from "@/context/AuthContext";
+import { TripsContextProvider } from "@/context/TripsContext";
 
 export const metadata: Metadata = {
   title: "Tracking Trips",
@@ -17,8 +18,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AuthContextProvider>
-          <NavBar />
-          {children}
+          <TripsContextProvider>
+            <NavBar />
+            {children}
+          </TripsContextProvider>
         </AuthContextProvider>
       </body>
     </html>

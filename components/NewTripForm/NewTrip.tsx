@@ -4,14 +4,14 @@ import { Field, Form, Formik, FormikHelpers } from "formik";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import styles from "./styles.module.scss";
-import { Country, State, City } from "country-state-city";
+import { State, City } from "country-state-city";
 import { statuses } from "@/data/statuses";
 import customStyles from '@/utils/selectFormat'
-import { stringify } from "querystring";
+import { userTrips } from "@/context/TripsContext";
 
 export default function NewTrip() {
   const tripsCollaction = collection(db, "trips");
-  // const companiesCollaction = collection(db, "companies");
+  const { getTripsData } = userTrips();
 
   const [selectedState, setSelectedState] = useState("");
   const [citiesInState, setCitiesInState] = useState<any>([]);
@@ -32,11 +32,7 @@ export default function NewTrip() {
     }
   }, [selectedState]);
 
-  const companies: any = [
-    { label: "Company name", value: "company name" },
-    { label: "Company name 2", value: "company name 2" },
-    { label: "Company name 3", value: "company name 3" },
-  ];
+ 
 
   const handleSubmit = async (
     values: any,
@@ -44,6 +40,7 @@ export default function NewTrip() {
   ) => {
     setLoading(true)
     await addDoc(tripsCollaction, values);
+    getTripsData();
     resetForm();
     setLoading(false)
   };
@@ -51,7 +48,7 @@ export default function NewTrip() {
   return (
     <Formik
       initialValues={{
-        id: Date.now().toString(),
+        createDate: new Date(),
         user: auth?.currentUser?.uid || null,
         company: "",
         origin: {
