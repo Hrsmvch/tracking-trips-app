@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { statuses } from "@/data/statuses";
+import { userTrips } from "@/context/TripsContext";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "@/utils/firebase";
 
-export default function TripItem({ data }: any) {
-  const [collapsed, setCollapsed] = useState(false);
-  const { company, destination, origin, note, paid, payment, status, miles } =
-    data;
+export default function TripItem({ data }: any) {  
+  const { id, company, destination, origin, note, paid, payment, status, miles } = data; 
+  const { getTripsData } = userTrips();
 
-  const deleteTrip = () => {};
+  const [collapsed, setCollapsed] = useState(false); 
+  useEffect(() => setCollapsed(false), [id])
 
   function calculateDuration(startDate: string, endDate: string) {
     const start: any = new Date(startDate);
@@ -18,25 +21,38 @@ export default function TripItem({ data }: any) {
     const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 
     return `${daysDifference || 0} days`;
-}
+  }
 
-function changeDateFormat(inputDate: string) {
-  const date: Date = new Date(inputDate);
+  function changeDateFormat(inputDate: string) {
+    const date: Date = new Date(inputDate);
 
-  const day = date.getDate();
-  const month = date.getMonth() + 1; 
-  const year = date.getFullYear();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
 
-  const formattedDay = day < 10 ? `0${day}` : day;
-  const formattedMonth = month < 10 ? `0${month}` : month;
+    const formattedDay = day < 10 ? `0${day}` : day;
+    const formattedMonth = month < 10 ? `0${month}` : month;
 
-  const formattedDate = `${formattedDay}.${formattedMonth}.${year}`;
+    const formattedDate = `${formattedDay}.${formattedMonth}.${year}`;
 
-  return `${inputDate ? formattedDate : '00.00.00'}`;
-}
+    return `${inputDate ? formattedDate : "00.00.00"}`;
+  }
+
+  const removeTripById = async (tripId: string) => {
+    try {
+      const tripDocRef = doc(db, 'trips', tripId); 
+      await deleteDoc(tripDocRef);
+  
+  
+      getTripsData();
+    } catch (error) {
+      console.error('Error removing trip:', error);
+    }
+  };
+  
 
   return (
-    <div className={styles.tripItem}>
+    <div className={styles.tripItem} key={id}>
       <div className={styles.preview}>
         <div className={styles.previewInfo}>
           <div
@@ -87,12 +103,14 @@ function changeDateFormat(inputDate: string) {
               <div>
                 <div className={styles.label}>Origin</div>
                 <div className={styles.value}>
-                  {origin.city} {origin.state || '-'}
+                  {origin.city} {origin.state || "-"}
                 </div>
               </div>
               <div>
                 <div className={styles.label}>Date:</div>
-                <div className={styles.value}>{changeDateFormat(origin.date)}</div>
+                <div className={styles.value}>
+                  {changeDateFormat(origin.date)}
+                </div>
               </div>
             </div>
 
@@ -100,12 +118,14 @@ function changeDateFormat(inputDate: string) {
               <div>
                 <div className={styles.label}>Destination</div>
                 <div className={styles.value}>
-                  {destination.city} {destination.state || '-'}
+                  {destination.city} {destination.state || "-"}
                 </div>
               </div>
               <div>
                 <div className={styles.label}>Date:</div>
-                <div className={styles.value}>{changeDateFormat(destination.date)}</div>
+                <div className={styles.value}>
+                  {changeDateFormat(destination.date)}
+                </div>
               </div>
             </div>
 
@@ -116,7 +136,9 @@ function changeDateFormat(inputDate: string) {
               </div>
               <div>
                 <div className={styles.label}>Duration:</div>
-                <div className={styles.value}>{calculateDuration(origin?.date, destination?.date)}</div>
+                <div className={styles.value}>
+                  {calculateDuration(origin?.date, destination?.date)}
+                </div>
               </div>
             </div>
           </div>
@@ -125,7 +147,7 @@ function changeDateFormat(inputDate: string) {
             <div className={styles.payment}>
               <div className={styles.label}>Payment:</div>
               <div className={styles.value}>
-                ${payment || '0'}
+                ${payment || "0"}
                 {!paid ? (
                   <>
                     <svg
@@ -172,7 +194,7 @@ function changeDateFormat(inputDate: string) {
                 />
               </svg>
             </button>
-            <button className={styles.delete} onClick={deleteTrip}>
+            <button className={styles.delete} onClick={() => removeTripById(id)}>
               <svg
                 width="24"
                 height="24"
