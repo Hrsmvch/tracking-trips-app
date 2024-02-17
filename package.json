@@ -1,5 +1,5 @@
 {
-  "name": "tracking-trips-app",
+  "name": "tracking-trips",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,20 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "country-state-city": "^3.2.1",
-    "firebase": "^10.7.1",
+    "firebase": "^10.8.0",
     "formik": "^2.4.5",
-    "next": "14.0.4",
+    "moment": "^2.30.1",
+    "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-select": "^5.8.0"
+    "react-loading": "^2.0.3"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "sass": "^1.69.7",
+    "sass": "^1.71.0",
     "typescript": "^5"
   }
 }

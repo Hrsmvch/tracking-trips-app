@@ -1,17 +1,19 @@
-'use client'
+"use client";
 import { useContext, createContext, useState, useEffect } from "react";
 import {
   signInWithPopup,
   signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
+  getAuth,
 } from "firebase/auth";
 import { auth } from "@/utils/firebase";
+import Loading from "@/components/Loader/Loading";
 
 const AuthContext = createContext<any>(null);
 
 export const AuthContextProvider = ({ children }: any) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   const googleSignIn = () => {
@@ -24,20 +26,19 @@ export const AuthContextProvider = ({ children }: any) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser: any) => {
-      setUser(currentUser);
+    const auth = getAuth();
+    return auth.onIdTokenChanged(async (user) => {
+      if (!user) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+      await user.getIdToken();
+
+      setUser(user);
+      setLoading(false);
     });
-    return () => unsubscribe();
-  }, [user]);
-
-  useEffect(() => {
-    const checkAuthentication = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 50));
-      setLoading(false)
-    };
-
-    checkAuthentication();
-  }, [user]);
+  }), [];
 
   return (
     <AuthContext.Provider value={{ user, loading, googleSignIn, logOut }}>

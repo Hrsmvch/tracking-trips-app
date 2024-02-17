@@ -1,12 +1,6 @@
-'use client'
-import UnAuth from '@/components/UnAuth/UnAuth';
-import { UserAuth } from '@/context/AuthContext';
-import styles from './styles.module.scss'
+'use client' 
 
-export default function Statistics() {
-  const {user} =  UserAuth();
-
-  if(!user) return <UnAuth />
+export default function Statistics() { 
 
   return (
     <main>
