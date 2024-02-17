@@ -1,8 +1,9 @@
-import { UserAuth } from "@/context/AuthContext";
-import styles from "./styles.module.scss";
+import React from 'react'
+import styles from './styles.module.scss';
 import HandDrawnArrow from "@/public/hand-drawn-arrow.svg";
+import { UserAuth } from '@/context/AuthContext';
 
-export default function UnAuth() {
+export default function UnauthorizedUser() {
   const { googleSignIn } = UserAuth(); 
 
   const handleSignIn = async () => {
@@ -12,14 +13,14 @@ export default function UnAuth() {
       console.log("error: ", error);
     }
   };
-
+  
   return (
-    <main className={styles.unAuthBlock}>
-      <div className={styles.message}>
+    <div className={styles.unauthorized}>
+       <div className={styles.message}>
         Please <span>Sign In</span> to start tracking your trips
         <HandDrawnArrow />
       </div>
       <button onClick={handleSignIn}>Sign In</button>
-    </main>
-  );
+    </div>
+  )
 }

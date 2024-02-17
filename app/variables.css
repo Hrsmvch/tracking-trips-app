@@ -1,0 +1,15 @@
+:root{
+  --accent-color: #1000c2;
+  --accent-green: #386d66;
+  --block-bg: #FFFFFF;
+  --light-grey: #d3d3d3;
+  --grey: #4b4b4b;
+  --dark-grey: #6A6A6A;
+
+  --block-shadow: 10px 14px 44px 10px rgba(0, 0, 0, 0.05);
+
+  --canceled: #d83838;
+  --paid: #4d913c;
+  --delivered: #5cc0d4;
+
+}

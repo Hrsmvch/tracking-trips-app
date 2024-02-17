@@ -1,0 +1,29 @@
+.nav_container{
+  background-color: var(--block-bg);
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 10px;
+}
+
+.page_container{
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.statistics_container{
+  display: flex;
+  gap: 20px;
+}
+
+.loading_container{
+  width: inherit;
+  height: inherit; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 50px;
+}

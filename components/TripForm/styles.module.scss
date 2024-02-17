@@ -1,3 +1,14 @@
+.trip_form{
+  flex: 1;
+  min-height: 500px;
+  padding: 24px 30px;
+  background-color: var(--block-bg);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .field_row{
   margin: 10px 0;
 
@@ -12,7 +23,7 @@
     width: 100%;
     padding: 8px 12px;
     border: none;
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid var(--light-grey);
     outline: none;
 
     &::placeholder{
@@ -25,7 +36,7 @@
     width: 100%;
     min-height: 80px;
     border-radius: 6px;
-    border-color: lightgrey;
+    border-color: var(--light-grey);
     outline: none;
     padding: 16px;
   }
@@ -34,17 +45,6 @@
 .group{
   display: flex;
   gap: 6px;
-
-  
-  & > div{
-    width: 100%;
-  }
-  input[type=checkbox]{
-    width: 40px;
-    border-color: lightgray;
-    accent-color: rgb(229, 226, 226);
-    max-height: 38px;
-  }
 }
 
 .action{
@@ -57,6 +57,7 @@
     border: none;
     background-color: #fff;
     font-size: 14px;
+    cursor: pointer;
     
     &:first-child{
       padding: 10px 20px;

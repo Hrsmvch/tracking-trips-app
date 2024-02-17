@@ -1,23 +1,57 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 import TripItem from "./TripItem";
-import styles from "./styles.module.scss";
-import { userTrips } from "@/context/TripsContext";
+import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
+import { db } from "@/utils/firebase";
+import { Trip } from "@/types/trips";
+import styles from './styles.module.scss';
+import { UserAuth } from "@/context/AuthContext";
 
 export default function TripsList() {
-  const { data: tripsData } = userTrips();
 
-  if (!tripsData?.length)
+  const [trips, setTrips] = useState<Trip[]>([]);
+
+  const {user} = UserAuth(); 
+
+  useEffect(() => {
+    if(!user) {
+      setTrips([])
+      return;
+    }
+    const tripsCollection = collection(db, "trips");
+    const q = query(tripsCollection, where('user', '==', user?.email), orderBy("timestamp", "desc"));
+
+    const unsubscribe = onSnapshot(q,
+      (querySnapshot) => {
+        setTrips(
+          querySnapshot.docs.map((doc: any) => ({
+            ...doc.data(),
+            id: doc.id,
+            timestamp: doc.data().timestamp?.toDate().getTime(),
+          }))
+        )
+      },
+      (error) => {
+        console.log("Error fetching trips: ", error);
+        // TODO: handle error.
+      }
+    );
+    
+    return unsubscribe;
+  }, [user]);
+
+  if (!trips.length)
     return (
-      <div className={styles.no_data}>
-        You have no trip yet. Please create one first!
+      <div className={`${styles.trips_list} ${styles.no_data}`}>
+        You have no trip yet. <br />
+        Please create one first!
       </div>
     );
 
   return (
-    <div className={styles.list}>
-      {tripsData?.map((item: any) => (
-        <TripItem data={item} />
-      ))}
+    <div className={styles.trips_list}>
+      <h2>My trips</h2>
+      {trips?.map((item: Trip) => <TripItem key={item.id} data={item} />)}
     </div>
   );
 }
