@@ -1,4 +1,4 @@
-.trip_form{
+.trip_form {
   flex: 1;
   min-height: 500px;
   padding: 24px 30px;
@@ -9,30 +9,62 @@
   gap: 10px;
 }
 
-.field_row{
+.field_row {
   margin: 10px 0;
 
-  label{
+  label {
     display: block;
     font-size: 14px;
     color: grey;
     margin-bottom: 5px;
   }
 
-  input{
+  .payment_group{
+    display: flex;
+    gap: 10px;
+    input{
+      &:last-child{
+        width: 40px;
+      }
+    }
+  }
+
+  .helper_btn {
+    position: absolute;
+    right: 0;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    display: block;
+    margin-top: 8px;
+    color: grey;
+    cursor: pointer;
+  }
+
+  .zip_data {
+    color: grey;
+    margin-top: 5px;
+    font-size: 14px;
+    span {
+      color: #333;
+      margin-left: 10px;
+    }
+  }
+
+  input {
     width: 100%;
     padding: 8px 12px;
     border: none;
     border-bottom: 1px solid var(--light-grey);
     outline: none;
 
-    &::placeholder{
+    &::placeholder {
       font-style: italic;
       color: lightgray;
     }
   }
 
-  textarea{
+  textarea {
     width: 100%;
     min-height: 80px;
     border-radius: 6px;
@@ -42,35 +74,35 @@
   }
 }
 
-.group{
+.group {
   display: flex;
   gap: 6px;
 }
 
-.action{
+.action {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 8px;
 
-  button{
+  button {
     border: none;
     background-color: #fff;
     font-size: 14px;
     cursor: pointer;
-    
-    &:first-child{
+
+    &:first-child {
       padding: 10px 20px;
       color: grey;
     }
-    
-    &:last-child{
+
+    &:last-child {
       padding: 10px 36px;
       text-transform: uppercase;
       border-radius: 8px;
       color: #fff;
       font-weight: 500;
-      background-color: #5B5B5B;
+      background-color: #5b5b5b;
     }
   }
 }
