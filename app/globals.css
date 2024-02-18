@@ -41,3 +41,14 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+
+.rs-picker {
+  width: 100%;
+}
+
+.rs-input-group {
+  border-radius: 0 !important;
+  border: none !important;
+  border-bottom: 1px solid var(--light-grey) !important;
+}
