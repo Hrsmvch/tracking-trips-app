@@ -4,7 +4,7 @@ const getLocationFromZipCode = async (zipCode: string): Promise<{ city: string; 
       throw new Error('Please enter a valid 5-digit zip code.');
     }
 
-    const response = await fetch(`http://api.zippopotam.us/us/${zipCode}`);
+    const response = await fetch(`https://api.zippopotam.us/us/${zipCode}`);
 
     if (!response.ok) {
       throw new Error('Failed to fetch location data');
