@@ -1,0 +1,21 @@
+.chart{
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px 22px;
+  
+  &_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    h2{
+      font-size: 20px;
+    }
+  }
+
+  &_total{
+    font-size: 20px;
+    color: #333;
+  }
+}

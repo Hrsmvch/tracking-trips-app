@@ -1,19 +1,6 @@
-<svg
-  width="39"
-  height="38"
-  viewBox="0 0 39 38"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <g clip-path="url(#clip0_5_843)">
-    <path
-      d="M11.5 14L19.5 21.5L27.5 14L29.25 15.8333L19.5 25.3333L9.75 15.8333L11.5 14Z"
-      fill="#b0b0b0"
-    />
-  </g>
-  <defs>
-    <clipPath id="clip0_5_843">
-      <rect width="39" height="38" fill="white" />
-    </clipPath>
-  </defs>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 386.257 386.257" xml:space="preserve">
+<polygon points="0,96.879 193.129,289.379 386.257,96.879 "/>
 </svg>

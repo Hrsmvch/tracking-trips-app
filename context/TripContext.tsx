@@ -18,13 +18,15 @@ export const TripsContextProvider = ({ children }: any) => {
   };
 
   const [trip, setTrip] = useState<Trip>(initTrip);
+  const [mobileForm, setMobileForm] = useState(true);
+
 
   const resetTrip = () => {
     setTrip(initTrip);
   };
 
   return (
-    <TripsContext.Provider value={{ trip, setTrip, resetTrip }}>
+    <TripsContext.Provider value={{ trip, setTrip, resetTrip, mobileForm, setMobileForm }}>
       {children}
     </TripsContext.Provider>
   );
