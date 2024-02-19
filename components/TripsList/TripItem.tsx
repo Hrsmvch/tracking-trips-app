@@ -17,10 +17,12 @@ interface TripItemProps {
 }
 
 const EditAction = ({ item }: { item: Trip }) => {
-  const { trip, setTrip, resetTrip } = userTripContext();
+  const { trip, setTrip, resetTrip, setMobileForm } = userTripContext();
 
   const handleEdit = async () => {
     setTrip(item);
+    setMobileForm(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -71,8 +73,9 @@ export default function TripItem({ data }: TripItemProps) {
             {company}
           </div>
           <div className={`${styles.distance} ${collapsed ? styles.hide : ""}`}>
-            {origin.state_abbr}, {origin.city} - {destination.state_abbr},{" "}
-            {destination.city}
+            {origin.state_abbr}
+            <span>, {origin.city}</span> - {destination.state_abbr}
+            <span>, {destination.city}</span>
           </div>
         </div>
         <div className={styles.preview_action}>

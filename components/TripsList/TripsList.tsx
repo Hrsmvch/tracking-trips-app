@@ -28,7 +28,7 @@ export default function TripsList() {
             ...doc.data(),
             id: doc.id,
             timestamp: doc.data().timestamp?.toDate().getTime(),
-          }))
+          })).sort((a: any, b: any) => b.dateRange.end - a.dateRange.end)
         )
       },
       (error) => {
