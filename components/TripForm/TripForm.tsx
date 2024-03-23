@@ -82,6 +82,7 @@ export default function TripForm() {
   };
 
   const handleDateRangeChange = (dateRange: any, setFieldValue: any) => {
+    console.log('dateRange: ', dateRange);
     setFieldValue("dateRange", {
       start: dateRange[0],
       end: dateRange[1],
