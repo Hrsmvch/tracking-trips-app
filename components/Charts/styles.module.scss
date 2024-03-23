@@ -1,21 +1,92 @@
-.chart{
+.chart {
   background-color: #fff;
   border-radius: 16px;
   padding: 24px 22px;
-  
-  &_header{
+  // flex: 0 0 50%;
+
+  &_header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
 
-    h2{
+    h2 {
       font-size: 20px;
     }
   }
 
-  &_total{
+  &_total {
     font-size: 20px;
     color: #333;
+  }
+}
+
+.chart_statuses_data {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .chart_item {
+    .chart_item_heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 3px;
+      padding: 0 10px;
+    }
+
+    .chart_item_progress {
+      position: relative;
+      width: 100%;
+      height: 30px;
+      border-radius: 20px;
+      background-color: #c7c7cd;
+      span {
+        position: absolute;
+        height: 30px;
+        border-radius: 20px;
+      }
+    }
+
+    &:nth-child(1) {
+      .chart_item_progress {
+        span {
+          background-color: #9dcaf4;
+        }
+      }
+    }
+
+    &:nth-child(2) {
+      .chart_item_progress {
+        span {
+          background-color: #e14e4e;
+        }
+      }
+    }
+
+    &:nth-child(3) {
+      .chart_item_progress {
+        span {
+          background-color: #ffd980;
+        }
+      }
+    }
+  }
+}
+
+.moon_tooltip {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  .moon_header{
+    font-size: 20px;
+  }
+
+  .moon_number{
+    font-size: 42px;
   }
 }

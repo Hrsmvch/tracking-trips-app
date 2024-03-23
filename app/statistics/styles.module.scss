@@ -1,0 +1,14 @@
+.column{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;  
+
+  &:first-child{
+    width: 60%;
+  }
+
+  &:last-child{
+    width: 40%;
+  }
+
+}

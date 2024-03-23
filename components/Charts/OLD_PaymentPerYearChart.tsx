@@ -86,5 +86,4 @@ const PaymentPerYearChart: React.FC<PaymentPerYearChartProps> = ({ data }) => {
     </div>
   );
 };
-
-export default PaymentPerYearChart;
+ 
