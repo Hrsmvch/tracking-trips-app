@@ -47,6 +47,7 @@ const DeleteAction = ({ id }: { id: string | undefined }) => {
 };
 
 export default function TripItem({ data }: TripItemProps) {
+  const [collapsed, setCollapsed] = useState(false);
   const {
     id,
     company,
@@ -59,9 +60,12 @@ export default function TripItem({ data }: TripItemProps) {
     destination,
     dateRange,
   } = data;
+  console.log('data: ', data);
 
-  const [collapsed, setCollapsed] = useState(false);
-  useEffect(() => setCollapsed(false), [id]);
+  console.log('collapsed: ', collapsed);
+  // useEffect(() => setCollapsed(false), [id]);
+
+ 
 
   return (
     <div className={styles.trip_item}>
@@ -87,7 +91,7 @@ export default function TripItem({ data }: TripItemProps) {
             className={`${styles.more} ${collapsed ? styles.opened : ""}`}
             onClick={() => setCollapsed(!collapsed)}
           >
-            <ArrowIcon />
+            <ArrowIcon /> 
           </button>
         </div>
       </div>

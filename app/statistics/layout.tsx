@@ -3,6 +3,7 @@ import { AuthContextProvider } from "@/context/AuthContext";
 import Navigation from "@/components/Navigation/Navigation";
 import PageContainer from "@/components/Containers/PageContainer";
 import { TripsContextProvider } from "@/context/TripContext";
+import StatisticsContainer from "@/components/Containers/StatisticsContainer";
 
 export const metadata: Metadata = {
   title: "Tracking trips | Analytics",
@@ -19,9 +20,9 @@ export default function RootLayout({
     <AuthContextProvider>
       <Navigation />
       <TripsContextProvider>
-        <PageContainer>
+        <StatisticsContainer>
          {children}
-        </PageContainer>
+        </StatisticsContainer>
       </TripsContextProvider>
     </AuthContextProvider>
   </>

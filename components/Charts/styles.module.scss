@@ -2,7 +2,7 @@
   background-color: #fff;
   border-radius: 16px;
   padding: 24px 22px;
-  // flex: 0 0 50%;
+  min-height: 335px;
 
   &_header {
     display: flex;
@@ -24,7 +24,7 @@
 .chart_statuses_data {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 26px;
 
   .chart_item {
     .chart_item_heading {
@@ -34,6 +34,9 @@
       gap: 20px;
       margin-bottom: 3px;
       padding: 0 10px;
+      span{
+        font-size: 14px;
+      }
     }
 
     .chart_item_progress {
@@ -88,5 +91,42 @@
 
   .moon_number{
     font-size: 42px;
+  }
+}
+
+
+@media (width < 1000px){
+  .chart {
+    min-height: unset;
+    padding: 16px ; 
+  
+    &_header { 
+      margin-bottom: 10px;
+  
+      h2 {
+        font-size: 18px;
+      }
+    }
+  
+    &_total {
+      font-size: 16px; 
+    }
+
+    canvas{
+      width: 100% !important;
+      height: auto !important;
+    }
+  } 
+
+  .moon_tooltip {
+   
+  
+    .moon_header{
+      font-size: 16px;
+    }
+  
+    .moon_number{
+      font-size: 24px;
+    }
   }
 }

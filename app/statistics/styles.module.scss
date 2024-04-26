@@ -12,3 +12,20 @@
   }
 
 }
+
+@media (width < 1000px){
+  .column{
+    flex-direction: column;
+    gap: 10px;  
+    // margin: 0 auto;
+    &:first-child{
+      width: 100%;
+    }
+  
+    &:last-child{
+      width: 100%;
+    }
+  
+  }
+  
+}

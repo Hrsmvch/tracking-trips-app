@@ -37,6 +37,8 @@ const DaysInTripPerYearChart: React.FC<Props> = ({ data }) => {
         <Doughnut
           data={chartData}
           options={{
+            // responsive: true,
+            // maintainAspectRatio: false,
             plugins: {
               legend: {
                 display: false,
@@ -49,9 +51,7 @@ const DaysInTripPerYearChart: React.FC<Props> = ({ data }) => {
             circumference: 300,
             // @ts-ignore
             borderRadius: 50,
-            cutout: "75%",
-            // maintainAspectRatio: true,
-            // responsive: true,
+            cutout: "75%", 
           }}
         />
         <div className={styles.moon_tooltip}>
